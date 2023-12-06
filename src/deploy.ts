@@ -74,6 +74,7 @@ async function execWithCredentials(
   gacFilename,
   opts: { debug?: boolean; firebaseToolsVersion?: string }
 ) {
+  console.log(args)
   let deployOutputBuf: Buffer[] = [];
   const debug = opts.debug || false;
   const firebaseToolsVersion = opts.firebaseToolsVersion || "latest";
