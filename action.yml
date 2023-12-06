@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Deploy to Firebase Hosting"
+name: "Deploy to Firebase Hosting and Functions"
 description: "A GitHub Action to deploy to Firebase Hosting"
-author: "Jason Miller (https://github.com/developit) and Firebase"
+author: "Mathias Illian, Jason Miller (https://github.com/developit) and Firebase"
 branding:
   icon: "globe"
   color: "blue"
