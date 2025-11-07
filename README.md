@@ -43,7 +43,7 @@ jobs:
   build_and_preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       # Add any build steps here. For example:
       # - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
@@ -52,6 +52,8 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           expires: 30d
           projectId: your-Firebase-project-ID
+          # Optionally add Force flag
+          # force: true
 ```
 
 ### Deploy to your live channel on merge
@@ -73,15 +75,16 @@ jobs:
   deploy_live_website:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       # Add any build steps here. For example:
       # - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: your-Firebase-project-ID
           channelId: live
+          # Optionally add Force flag
+          # force: true
 ```
 
 ## Options
@@ -148,6 +151,14 @@ file relative to the root of your repository. Defaults to `.` (the root of your 
 
 The version of `firebase-tools` to use. If not specified, defaults to `latest`.
 
+### `disableComment` _{boolean}_
+
+Disable commenting in a PR with the preview URL.
+
+### `force` _{boolean}_
+
+Uses the Firebase CLI's `--force` flag to automatically accept all interactive prompts.
+
 ## Outputs
 
 Values emitted by this action that can be consumed by other actions later in your workflow
@@ -158,7 +169,11 @@ The url(s) deployed to
 
 ### `expire_time`
 
-The time the deployed preview urls expire
+The time the deployed preview urls expire, example: 2024-04-10T14:37:53.817800922Z
+
+### `expire_time_formatted`
+
+The time the deployed preview urls expire in the UTC format, example: Tue, 09 Apr 2024 18:24:42 GMT
 
 ### `details_url`
 

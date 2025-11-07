@@ -19,7 +19,7 @@ branding:
   icon: "globe"
   color: "blue"
 runs:
-  using: "node16"
+  using: "node20"
   main: "bin/action.min.js"
 inputs:
   repoToken:
@@ -33,25 +33,16 @@ inputs:
     default: "7d"
     required: false
   projectId:
-    description:
-      "The project to deploy to. If you leave this blank, make sure you check in
-      a .firebaserc file"
+    description: "The project to deploy to. If you leave this blank, make sure you check in a .firebaserc file"
     required: false
   channelId:
-    description: "The ID of the channel to deploy to. If you leave this blank,
-      a preview channel and its ID will be auto-generated per branch or PR."
+    description: "The ID of the channel to deploy to. If you leave this blank, a preview channel and its ID will be auto-generated per branch or PR."
     required: false
   target:
-    description:
-      "The target name of the Hosting site to deploy to. If you leave this blank,
-      the default target or all targets defined in the .firebaserc will be deployed to.
-      Refer to the Hosting docs about [multiple sites](https://firebase.google.com/docs/hosting/multisites)
-      for more information about deploy targets."
+    description: "The target name of the Hosting site to deploy to. If you leave this blank, the default target or all targets defined in the .firebaserc will be deployed to. Refer to the Hosting docs about [multiple sites](https://firebase.google.com/docs/hosting/multisites) for more information about deploy targets."
     required: false
   entryPoint:
-    description:
-      "The location of your firebase.json file, relative to the root of your
-      directory"
+    description: "The location of your firebase.json file, relative to the root of your directory"
     default: "."
     required: false
   firebaseToolsVersion:
@@ -59,10 +50,21 @@ inputs:
       The version of firebase-tools to use. Defaults to `latest`.
     default: latest
     required: false
+  disableComment:
+    description: >-
+      Disable auto-commenting with the preview channel URL to the pull request
+    default: "false"
+    required: false
+  force:
+    description: "Pass 'true' to use the --force flag with firebase deploy. This will automatically accept any warning or prompts during deploy. Use with caution."
+    default: "false"
+    required: false
 outputs:
   urls:
     description: The url(s) deployed to
   expire_time:
     description: The time the deployed preview urls expire
+  expire_time_formatted:
+    description: The time the deployed preview urls expire in the UTC format
   details_url:
     description: A single URL that was deployed to
